@@ -1,10 +1,10 @@
+const { getHomepageHandler, getAboutpageHandler, getUserProfileHandler, postLoginHandler } = require('./handlers.js');
+
 const routes = [
     {
         method: "GET",
         path: "/",
-        handler: (req, h) => {
-            return 'Homepage';
-        }
+        handler: getHomepageHandler
     },
     {
         method: "*",
@@ -16,9 +16,7 @@ const routes = [
     {
         method: "GET",
         path: "/about",
-        handler: (req, h) => {
-            return 'About page';
-        }
+        handler: getAboutpageHandler
     },
     {
         method: "*",
@@ -30,10 +28,12 @@ const routes = [
     {
         method: "GET",
         path: "/users/{username?}",
-        handler: (req, h) => {
-            const { username = 'guest' } = req.params;
-            return `Displaying profile of ${username}`;
-        }
+        handler: getUserProfileHandler
+    },
+    {
+        method: "POST",
+        path: "/login",
+        handler: postLoginHandler
     },
     {
         method: "*",
